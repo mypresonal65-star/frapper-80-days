@@ -4,6 +4,7 @@
   "description": "Frappe 80 Days Tracker App for Web and Android",
   "main": "index.html",
   "scripts": {
+    "build": "node build.js",
     "start": "npx serve ."
   },
   "dependencies": {
