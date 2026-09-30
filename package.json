@@ -1,0 +1,16 @@
+{
+  "name": "frappe-80days-tracker",
+  "version": "1.0.0",
+  "description": "Frappe 80 Days Tracker App for Web and Android",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/android": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  }
+}

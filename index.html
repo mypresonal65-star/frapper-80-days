@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Frappe & ERPNext 80-Days Mastery Tracker</title>
+  
+  <!-- PWA & Mobile Phone App Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#111827">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Frappe80">
+  <link rel="apple-touch-icon" href="icon-192.svg">
+  <link rel="icon" type="image/svg+xml" href="icon-192.svg">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+
+  <!-- Floating Sticky Alarm Reminder Bar -->
+  <header class="alarm-bar" id="alarmBar">
+    <div class="alarm-bar-inner">
+      <div class="alarm-status">
+        <span class="pulse-indicator active" id="alarmDot"></span>
+        <div class="alarm-text">
+          <strong id="alarmStatusTitle">Alarm Active: Har 2 Ghante me Reminder</strong>
+          <span id="nextAlarmCountdown">Agla alarm: 01:59:59 baad</span>
+        </div>
+      </div>
+
+      <div class="alarm-controls">
+        <div class="control-group">
+          <label for="intervalSelect">⏱️ Interval:</label>
+          <select id="intervalSelect" class="styled-select">
+            <option value="15">Har 15 Mins (Testing)</option>
+            <option value="30">Har 30 Mins</option>
+            <option value="60">Har 1 Ghanta</option>
+            <option value="120" selected>Har 2 Ghante (Recommended)</option>
+            <option value="180">Har 3 Ghante</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="ringtoneSelect">🔔 Ringtone:</label>
+          <select id="ringtoneSelect" class="styled-select">
+            <option value="loud_alarm" selected>🚨 Loud Emergency Alarm</option>
+            <option value="school_bell">🏫 School / College Bell</option>
+            <option value="cyber_siren">🛸 Cyber Warning Siren</option>
+            <option value="energetic_chime">✨ Energetic Chime</option>
+            <option value="urgent_beep">⚡ Urgent Repeating Beeps</option>
+          </select>
+          <button id="btnTestSound" class="btn btn-secondary btn-sm" title="Sound test karein">
+            🔊 Test
+          </button>
+        </div>
+
+        <div class="control-group">
+          <label for="volumeSlider">🔊 Vol:</label>
+          <input type="range" id="volumeSlider" min="0.1" max="1" step="0.1" value="0.9" class="styled-range">
+        </div>
+
+        <div class="control-actions">
+          <button id="btnToggleAlarm" class="btn btn-warning btn-sm">
+            🔕 Pause
+          </button>
+          <button id="btnRequestNotification" class="btn btn-primary btn-sm">
+            🔔 Enable Alerts
+          </button>
+          <button id="btnInstallApp" class="btn btn-success btn-sm" style="display: none;">
+            📲 Install on Phone
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Hero / Header Section -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="badge-tag">Zero to Hero • 80 Days Plan • Mobile PWA Ready</div>
+        <h1>🚀 Frappe Framework & ERPNext Mastery</h1>
+        <p class="subtitle">Daily track karein, mobile phone aur laptop par har 2 ghante me alarm ghanti aur notifications payein!</p>
+      </div>
+
+      <div class="stats-card-grid">
+        <div class="stat-card">
+          <span class="stat-label">Total Progress</span>
+          <div class="stat-value" id="progressPercent">0%</div>
+          <span class="stat-sub" id="progressRatio">0 / 80 Din Complete</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Current Streak</span>
+          <div class="stat-value" id="streakCount">🔥 0 Din</div>
+          <span class="stat-sub">Daily consistency maintain karein</span>
+        </div>
+        <div class="stat-card highlight">
+          <span class="stat-label">Aaj Ka Target</span>
+          <div class="stat-value" id="currentDayFocus">Day 1</div>
+          <span class="stat-sub" id="currentDayTopic">WSL 2 & Linux Terminal</span>
+        </div>
+      </div>
+
+      <!-- Main Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation & Filter Bar -->
+    <section class="filter-section">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search topics (e.g. DocType, Python, ORM, Hooks, WSL, JS)...">
+      </div>
+
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-btn active" data-filter="all">All Days (80)</button>
+        <button class="filter-btn" data-filter="pending">⏳ Pending</button>
+        <button class="filter-btn" data-filter="completed">✅ Completed</button>
+        <button class="filter-btn" data-filter="block1">Block 1: Foundations</button>
+        <button class="filter-btn" data-filter="block2">Block 2: JS & Web</button>
+        <button class="filter-btn" data-filter="block3">Block 3: Bench & DocTypes</button>
+        <button class="filter-btn" data-filter="block4">Block 4: Python ORM</button>
+        <button class="filter-btn" data-filter="block5">Block 5: Client Scripts & Hooks</button>
+        <button class="filter-btn" data-filter="block6">Block 6: Projects & ERPNext</button>
+      </div>
+
+      <div class="quick-actions">
+        <button id="btnJumpNext" class="btn btn-outline">
+          🎯 Jump to Current Pending Day
+        </button>
+        <button id="btnResetProgress" class="btn btn-text text-danger">
+          🔄 Reset All
+        </button>
+      </div>
+    </section>
+
+    <!-- Days Grid Checklist -->
+    <main class="days-container" id="daysList">
+      <!-- Generated dynamically by app.js -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>📱 <strong>Phone Tips:</strong> Is web app ko Chrome me kholkar <em>"Add to Home Screen"</em> ya <em>"Install App"</em> karein — yeh phone me real App ki tarah save ho jayegi aur lock screen par bhi notifications bhejegi!</p>
+      <div class="footer-links">
+        <a href="https://frappe.school" target="_blank">Frappe School (Free)</a> •
+        <a href="https://docs.frappe.io" target="_blank">Official Docs</a> •
+        <a href="https://discuss.frappe.io" target="_blank">Frappe Forum</a> •
+        <a href="https://www.youtube.com/@BuildWithHussain" target="_blank">Build With Hussain</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- URGENT ALARM MODAL (LOUD FORCEFUL POPUP) -->
+  <div class="alarm-modal-backdrop" id="alarmModalBackdrop">
+    <div class="alarm-modal" id="alarmModal">
+      <div class="alarm-modal-header">
+        <div class="ringing-bell">🔔</div>
+        <h2>🚨 UTHO! PADHAI KA TIME HO GAYA! ⏰</h2>
+        <p class="alarm-modal-subtitle">Aapka 2 Ghante ka reminder trigger ho chuka hai!</p>
+      </div>
+      
+      <div class="alarm-modal-body">
+        <div class="urgent-task-card">
+          <span class="urgent-day-badge" id="modalDayBadge">Day X Target</span>
+          <h3 id="modalDayTitle">Topic Name</h3>
+          <p id="modalDayDesc">Topic details and what needs to be done...</p>
+          <div class="urgent-task-action" id="modalDayTask">
+            👉 Task: Complete practice and mark completed!
+          </div>
+        </div>
+      </div>
+
+      <div class="alarm-modal-footer">
+        <button id="btnModalComplete" class="btn btn-success btn-lg">
+          ✅ Maine Aaj Ka Kaam Kar Liya!
+        </button>
+        <button id="btnModalSnooze" class="btn btn-warning btn-lg">
+          ⏳ 15 Min Snooze (Padhne Jaa Raha Hu)
+        </button>
+        <button id="btnModalDismiss" class="btn btn-secondary">
+          🔇 Stop Alarm (Start Studying)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="192" height="192">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="bellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)"/>
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#38bdf8" stroke-width="8" stroke-dasharray="20 15" opacity="0.6"/>
+  <g transform="translate(106, 96)">
+    <path d="M150 40 C100 40 70 80 70 140 L70 200 L40 230 L40 250 L260 250 L260 230 L230 200 L230 140 C230 80 200 40 150 40 Z" fill="url(#bellGrad)"/>
+    <path d="M125 260 C125 275 135 285 150 285 C165 285 175 275 175 260 Z" fill="#f59e0b"/>
+    <circle cx="210" cy="90" r="45" fill="#10b981" stroke="#ffffff" stroke-width="6"/>
+    <path d="M195 90 L205 100 L225 78" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="256" y="440" font-family="Arial, sans-serif" font-weight="900" font-size="52" fill="#ffffff" text-anchor="middle" letter-spacing="4">FRAPPE 80</text>
+</svg>

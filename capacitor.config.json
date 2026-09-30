@@ -1,0 +1,8 @@
+{
+  "appId": "com.frappe80.tracker",
+  "appName": "Frappe 80",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https"
+  }
+}
