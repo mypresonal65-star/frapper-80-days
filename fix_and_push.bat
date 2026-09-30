@@ -6,7 +6,7 @@ echo ========================================================
 echo.
 
 git add .
-git commit -m "Fix webDir to www and add build script for Android APK"
+git commit -m "Fix Android SDK setup to use native GitHub runner"
 git push
 
 echo.
@@ -14,7 +14,6 @@ echo ========================================================
 echo   Fix GitHub par push ho chuki hai!
 echo ========================================================
 echo.
-echo Ab GitHub par Actions tab me jayein,
-echo Build Android APK workflow automatically successfully run hoga!
+echo Ab GitHub Actions tab me check karein, build pass ho jayega!
 echo.
 pause
